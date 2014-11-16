@@ -1,0 +1,22 @@
+function SpeedVariables() {
+	this.numberOfFrame   = 0;
+	this.speedController = 3;
+	this.objectFrequency = 50;
+	this.startRandomIndex= 100;
+	this.monkeyProb      = 15;
+	this.halloweenProb   = 15;
+	this.coinProb        = 15;
+	this.void_obj        = 15;
+	this.powerProb       = 15;
+	this.coinCount       = 5;
+	this.coinInProgess   = false;
+	this.coinIndex       = 0;
+	this.globalSpeedY    = 8; 
+	this.fps             = 1000/40;
+	this.heroDied        = false;
+	this.rocketPowerCtr  = 500;
+	this.sheildPowerCtr  = 500;
+	this.autoPilotCtr    = 20;
+};
+
+var speedVariables = new SpeedVariables();
