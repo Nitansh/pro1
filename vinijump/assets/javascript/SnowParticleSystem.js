@@ -23,8 +23,8 @@ SnowParticleSystem.prototype.update = function(){
 	for (var counter = 0; counter < this.count; counter++){
 		var p = this.ParticleSystemObject[counter];
 			//Lets make it more random by adding in the radius
-		p.y += Math.cos(this.angle+p.d) + 1 + p.radius/2;
-		p.x += Math.sin(this.angle) * 2;
+		p.y += Math.cos(this.angle+p.d) + 20 + p.radius/2;
+		p.x += Math.sin(this.angle) * 3;
 		
 		//Sending flakes back from the top when it exits
 		//Lets make it a bit more organic and let flakes enter from the left and right also.

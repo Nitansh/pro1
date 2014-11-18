@@ -6,8 +6,8 @@ function Hero(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, i
 	this.base 	= Sprite;
 	this.base(positionX, 400, imageUrl, isVisible, frameCount, rowCount, isAnimated);
 	this.animationId = 0;
-	this.speedX   = speed.x;
-	this.speedY   = speed.y; 
+	this.speedX   = 19;
+	this.speedY   = 20; 
 	this.isLeft   = false;
 	this.isRight  = true ;
 	this.inAir    = false;
@@ -243,7 +243,7 @@ Hero.prototype.heroTata = function(){
 		delete spriteVariables.heroAutoFight;
 	}
 	
-	this.speedY = 3;
+	this.speedY = 20;
 	if (this.y < commonConfiguration.ClientHeight){
 		this.y += this.speedY;
 	}else{

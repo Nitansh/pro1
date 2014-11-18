@@ -46,7 +46,7 @@ ScoreBoard.prototype.updateAutoPilotBar = function(){
 				spriteVariables.hero.autoPilot = false;
 				if (spriteVariables.heroAutoFight){
 					delete spriteVariables.heroAutoFight;
-					speedVariables.globalSpeedY = 8;
+					speedVariables.globalSpeedY = 20;
 				}
 			}
 		}else{

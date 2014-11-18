@@ -69,22 +69,7 @@ GameManager.prototype.initGameScene = function(){
     if (!this.isOn){
 		this.isOn = true;
 		self = this;		
-		(function animloop(){
-							self.update();
-							requestAnimFrame(animloop);  // equal to the set Interval
-						
-						})();
-		(function animloop(){
-			self.update();
-			requestAnimFrame(animloop);  // equal to the set Interval
-		
-		})();
-		(function animloop(){
-			self.update();
-			requestAnimFrame(animloop);  // equal to the set Interval
-		
-		})();
-		(function animloop(){
+				(function animloop(){
 			self.update();
 			requestAnimFrame(animloop);  // equal to the set Interval
 		
@@ -153,13 +138,13 @@ GameManager.prototype.objectController = function(){
 				speedVariables.coinCount     = 5 * random1;
 				speedVariables.coinInProgess = true;
 				var temp = spriteVariables.objectFrequency;
-				speedVariables.objectFrequency = 8;
+				speedVariables.objectFrequency = 4;
 				}
 			
 			if (speedVariables.coinIndex >= speedVariables.coinCount){
      			speedVariables.coinInProgess = false;
 				speedVariables.coinIndex = 0;
-				speedVariables.objectFrequency = 35;
+				speedVariables.objectFrequency = 15;
 			}	
 
 			this.spriteVariables.movable[2][(8  * (random1-1))  + speedVariables.coinIndex]['isVisible'] = true;
