@@ -36,7 +36,9 @@ window.onload = function(){
 	radio('RemoveDormatClassFromMetere').subscribe([spriteVariables.scoreBoard.removeDormatClass, spriteVariables.scoreBoard]);
 	radio('AutoPilotOn').subscribe([spriteVariables.hero.autoPilotToggle, spriteVariables.hero]);
 	
+	menuManager.showSplash();
 	menuManager.paint();
+	
 	window.addEventListener("click", getInput, false);
 };
 

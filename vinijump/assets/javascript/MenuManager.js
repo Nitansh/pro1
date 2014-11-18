@@ -1,8 +1,9 @@
 function MenuManager(menuVariables){
 	this.canvas              = Globalcanvas;
 	this.context 			 = Globalcontext;
-	this.state               = 'menu';
+	this.state               = 'splash';
 	this.menuVariables       = menuVariables;
+	this.splashState 		 = [true,false, false, false, false, false, false, false, false, false];
 	this.pauseState 		 = [false,true, false, false, false, false, false, false, true, true];
 	this.menuState  		 = [true, true, false, true, true, true, true, false, false,   false];
 	this.helpState  		 = [true, true, true, false, false, false, false, true, false, false];
@@ -34,6 +35,15 @@ MenuManager.prototype.clearScreen = function(){
 	
 }
 
+MenuManager.prototype.showSplash = function(){
+	var _this = this;
+	setTimeout(function(){
+	_this.stateChanger('menu');
+	}, 4000);
+ 	this.stateApply(this.splashState);
+}
+
+
 MenuManager.prototype.stateController = function(){
  
  	if(soundOn){
@@ -42,7 +52,7 @@ MenuManager.prototype.stateController = function(){
  		menuVariables.soundButton.currentFrame = 1;
  	} 
  
-
+	
  	if (!this.state.localeCompare('pause')){
  	 	this.stateApply(this.pauseState);
  	}
@@ -96,5 +106,3 @@ MenuManager.prototype.stateApply = function(array){
 		 counter++;
 	}
 }
-
-
