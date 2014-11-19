@@ -39,12 +39,19 @@ window.onload = function(){
 	menuManager.showSplash();
 	menuManager.paint();
 	
+	window.addEventListener("touchstart", getHeroInput, false);
 	window.addEventListener("click", getInput, false);
+	
 };
 
-function getInput(event){
 
-		event.preventDefault();
+function getHeroInput(event){
+	spriteVariables.hero.onInput(event);
+}
+
+
+function getInput(event){
+		
 		var state = null;
 		if (0 == menuManager.state.localeCompare('play') || 0 == menuManager.state.localeCompare('resumed')){
 				spriteVariables.hero.onInput(event);

@@ -33,13 +33,13 @@ RocketHero.prototype.visiblityToggle = function(){
 							for (var ctr_no = 0; ctr_no < spriteVariables[spriteObject][ctr_type].length; ctr_no++){
 								//update function
 								if (spriteVariables[spriteObject][ctr_type][ctr_no].speedY)
-									spriteVariables[spriteObject][ctr_type][ctr_no].speedY = 20;
+									spriteVariables[spriteObject][ctr_type][ctr_no].speedY = 50;
 								
 							}
 						}
 			}else{
 						if (spriteVariables[spriteObject].speedY)
-							spriteVariables[spriteObject].speedY = 20;
+							spriteVariables[spriteObject].speedY = 50;
 			}
 	}
 	}
@@ -49,11 +49,11 @@ RocketHero.prototype.visiblityToggle = function(){
 					for (var ctr_type = 0; ctr_type < spriteVariables[spriteObject].length; ctr_type++){
 							for (var ctr_no = 0; ctr_no < spriteVariables[spriteObject][ctr_type].length; ctr_no++){
 								//update function
-								spriteVariables[spriteObject][ctr_type][ctr_no].speedY = 8;
+								spriteVariables[spriteObject][ctr_type][ctr_no].speedY = 20;
 							}
 						}
 			}else{
-						spriteVariables[spriteObject].speedY = 8;
+						spriteVariables[spriteObject].speedY = 20;
 			}
 	}
 	}
