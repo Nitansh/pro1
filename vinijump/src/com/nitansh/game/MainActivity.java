@@ -37,7 +37,7 @@ import android.widget.RelativeLayout;
         setContentView(R.layout.activity_main);
         adView = new AdView(this);
         adView.setAdSize(AdSize.BANNER);
-        adView.setAdUnitId("ca-app-pub-4630224365778593/4696358304");
+        adView.setAdUnitId("ca-app-pub-5047333943084311/4181724580");
         
         
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.linear_layout);
@@ -90,7 +90,7 @@ import android.widget.RelativeLayout;
         webSettings.setDomStorageEnabled(true);
         mainWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         mainWebView.setWebViewClient(new MyCustomWebViewClient());
-        
+        mainWebView.addJavascriptInterface(new AudioInterface(this), "AndAud");
         mainWebView.loadUrl("file:///android_asset/html/main.html");
     }
     

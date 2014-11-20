@@ -248,6 +248,7 @@ Hero.prototype.heroTata = function(){
 		this.y += this.speedY;
 	}else{
 		speedVariables.heroDied =  true;
+		AndAud.stopAudio();
 	}
 
 	if (this.isLeft){

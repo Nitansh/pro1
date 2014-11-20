@@ -41,8 +41,13 @@ window.onload = function(){
 	
 	window.addEventListener("touchstart", getHeroInput, false);
 	window.addEventListener("click", getInput, false);
+	AndAud.CreateAudio("sound/game.mp3", true, 50);
+	
+					
 	
 };
+
+
 
 
 function getHeroInput(event){
@@ -54,11 +59,12 @@ function getInput(event){
 		
 		var state = null;
 		if (0 == menuManager.state.localeCompare('play') || 0 == menuManager.state.localeCompare('resumed')){
-				spriteVariables.hero.onInput(event);
-
+				spriteVariables.hero.onInput(event);			
+				
 				if(spriteVariables.backButton.isVisible && !spriteVariables.hero.heroFalling && spriteVariables.backButton.Clicked(event))
 				{	
 					state = 'pause';
+					AndAud.stopAudio();	
 					radio('MenuManagerStateUpdate').broadcast(state);
 					radio('GameManagerStateUpdate').broadcast(state);			
 				}
@@ -68,6 +74,7 @@ function getInput(event){
 					// Make the Hero fall so we can reuse the previous code and logic
 					radio('HeroDieing').broadcast();
 					speedVariables.heroDied =  true;
+					AndAud.stopAudio();
 					radio('HeroDied').broadcast();
 				}
 				if(menuVariables.backButton.isVisible && menuVariables.backButton.Clicked(event)){
@@ -83,6 +90,7 @@ function getInput(event){
 				}
 		  		if(menuVariables.playButton.isVisible && menuVariables.playButton.Clicked(event)){			
 					state = 'play';
+					AndAud.playAudio();	
 					radio('ToggleScoreBoardClass').broadcast();
 				}
 				if(menuVariables.resumeButton.isVisible && menuVariables.resumeButton.Clicked(event)){
