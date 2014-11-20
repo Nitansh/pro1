@@ -188,7 +188,12 @@ GameManager.prototype.boolToggle =  function(){
 }
 
 window.requestAnimFrame = (function(){
-					
-				return window.requestAnimationFrame;
-						
+					return  window.requestAnimationFrame ||
+							window.webkitRequestAnimationFrame ||
+							window.mozRequestAnimationFrame    ||
+							window.oRequestAnimationFrame      ||
+							window.msRequestAnimationFrame     ||
+							function( callback ){
+								window.setTimeout(callback, speedVariables.fps);
+							};
 				})();
