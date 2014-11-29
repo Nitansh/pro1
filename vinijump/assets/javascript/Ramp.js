@@ -12,10 +12,13 @@ Ramp.prototype = Object.create(Sprite.prototype);
 Ramp.prototype.update = function(){
 
 	// to be implemented
-	if (this.y < - commonConfiguration.ClientHeight){
-		this.y = commonConfiguration.ClientHeight;
+	
+	if (this.y < - commonConfiguration.ClientHeight*commonConfiguration.Yresolution){
+		this.y = commonConfiguration.ClientHeight*commonConfiguration.Yresolution;
 	}
-	this.y = ((this.y < (commonConfiguration.ClientHeight - this.speedY)) ? (this.y + this.speedY) : -this.Height);
+	
+	this.y = ((this.y <= (commonConfiguration.ClientHeight*commonConfiguration.Yresolution - this.speedY)) ? (this.y + this.speedY) : -commonConfiguration.ClientHeight*commonConfiguration.Yresolution);
+	
 }
 
 Ramp.prototype.speedToggle = function(){

@@ -1,4 +1,5 @@
 function ScoreBoard(){
+	try{
 	this.ScoreBoardElement   = document.getElementById('scoreboard');
 	this.autoPilotBar        = document.getElementById('AutoPilotBar');
 	this.myScore             = document.getElementById('myScore');
@@ -14,16 +15,28 @@ function ScoreBoard(){
 	this.shieldMeterCoins     = document.getElementById("shieldMeterMsg"); 
 	this.autoPlitotMeter      = document.getElementById("AutoPilotPowerMeter"); 
 	this.autoPlitotMeterCoins = document.getElementById("AutoPilotMeterMsg");
-	this.totalCoins           = document.getElementById("TotalCoins"); 
+	this.totalCoins           = document.getElementById("TotalCoins");
+	}
+	catch(err){
+		console.log("Error in scoreBoard");
+	} 
 
 }
 
 ScoreBoard.prototype.toggleClass = function(){
+	try{
 	this.ScoreBoardElement.classList.toggle('dormat');
+	}catch(err){
+	console.log("Toggle class");
+	}
 }
 
 ScoreBoard.prototype.SetHtml = function(HTMLElement, value){
-	HTMLElement.innerHTML = value;
+	try{
+		HTMLElement.innerHTML = value;
+	}catch(err){
+		console.log("Error in setting HTML");
+	}
 }
 
 ScoreBoard.prototype.GetHtml = function(HTMLElement){
@@ -31,11 +44,12 @@ ScoreBoard.prototype.GetHtml = function(HTMLElement){
 }
 
 ScoreBoard.prototype.updateAutoPilotBar = function(){
+	try{
 	if (speedVariables.numberOfFrame % 5 == 0 && (this.autoPilotBar.max >= this.autoPilotBar.value)){
 		if (this.autoPilotBar.max == this.autoPilotBar.value){
 			spriteVariables.hero.autoPilot = true;
 			spriteVariables.heroAutoFight = new HeroParticleSystem({x:commonConfiguration.ClientWidth-commonConfiguration.rampWidth, y:500 + 40}, 50, {red:227, green:140, blue:45});
-			speedVariables.globalSpeedY = 50;
+			speedVariables.globalSpeedY = 40;
 		}
 		
 		
@@ -54,33 +68,54 @@ ScoreBoard.prototype.updateAutoPilotBar = function(){
 		}
 		
 	}
+	}
+	catch(err){
+		console.log("error in updating auto pilot bar");
+	}
 }
 
 
 ScoreBoard.prototype.updateMyScore = function(){
+	try{
 	var value = this.GetHtml(this.myScore) + this.GetHtml(this.myMultiplier);
 	this.SetHtml(this.myScore,value);
+	}catch(err){
+		console.log("error in updating score")
+	}
 }
 
 
 ScoreBoard.prototype.updateMyCoinCount = function(){
+	try{
 	var value = this.GetHtml(this.myCointCount) + 1;
 	this.SetHtml(this.myCointCount, value);
+	}catch(err){
+		console.log("error in updating coin count");
+	}
 }
 
 ScoreBoard.prototype.updateMyMultiplier = function(){
+	try{
 	var value = this.GetHtml(this.myMultiplier) + 1;
 	this.SetHtml(this.myMultiplier, value);
+	}catch(err){
+		console.log("error in updating multiplier");
+	}
 }
 
 ScoreBoard.prototype.update = function(){
+	try{
 	this.updateMyScore();
 	this.SetHtml(this.myHighScore, localStorage.highScore);
 	this.updateHighScore();
 	this.updateAutoPilotBar();
+	}catch(err){
+		console.log("error in update");
+	}
 }
 
 ScoreBoard.prototype.updateHighScore = function(){
+	try{
 	if (typeof (Storage) !== undefined){
 		if (this.GetHtml(this.myScore) >= parseInt(localStorage.highScore) || localStorage.highScore === undefined){
 			// fire works on high score
@@ -92,9 +127,13 @@ ScoreBoard.prototype.updateHighScore = function(){
 	}else{
 			alert('we have to use phonegap technique')
 	}
+	}catch(err){
+		console.log("error in updateHigh Score");
+	}
 }
 
 ScoreBoard.prototype.updateTotalCoinCount = function(){
+	try{
 	if (typeof (Storage) !== undefined){
 			if  (localStorage.coinCount === undefined)
 				localStorage.coinCount = this.GetHtml(this.myCointCount);
@@ -103,27 +142,42 @@ ScoreBoard.prototype.updateTotalCoinCount = function(){
 		}else{
 			alert('we have to use phonegap technique')
 		}
-			
+	}catch(err){
+		console.log("error in update total coin count");
+	}	
 }
 
 ScoreBoard.prototype.updateScoreOnGameEnd = function(){
+	try{
 	this.SetHtml(this.myScore, 0);
 	this.updateTotalCoinCount();
 	this.SetHtml(this.myCointCount, 0);
 	this.updateHighScore();
 	this.autoPilotBar.value = 0;
+	}catch(err){
+		console.log("error in update in high score on game on end");
+	}
 }
 
 ScoreBoard.prototype.applyDormatClass = function(){
+	try{
 	this.mainMeter.classList.add('dormat');
+	}catch(err){
+		console.log("error in apply Dormant class");
+	}
 }
 
 ScoreBoard.prototype.removeDormatClass = function(){
+	try{
 	this.mainMeter.classList.remove('dormat');
 	this.updateMetreScoreBoard();
+	}catch(err){
+		console.log("error in remove dormant class");
+	}
 }
 
 ScoreBoard.prototype.updateMetreScoreBoard = function(){
+	try{
 	if (typeof (Storage) !== undefined){
 		// updating the coin count in meter scoreBaord
 		if (localStorage.coinCount !== undefined)
@@ -175,6 +229,9 @@ ScoreBoard.prototype.updateMetreScoreBoard = function(){
 
 	}else{
 		alert('we have to use phonegap technique');
+	}
+	}catch(err){
+		console.log("error in update my score");
 	}
 }
 

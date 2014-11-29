@@ -8,8 +8,8 @@ function CommonConfiguration(){
 	this.halloweenHalfCount = 5; // in Sprite variables
 	this.CoinFullCount      = 20; // in Sprite variables
 	this.MenuHardCode       = 316 ;
-	
-
+	this.Xresolution        = window.innerWidth/360;
+	this.Yresolution        = window.innerHeight/640;
 } 
 
 

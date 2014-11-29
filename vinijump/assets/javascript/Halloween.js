@@ -19,8 +19,8 @@ Halloween.prototype = Object.create(Sprite.prototype);
 Halloween.prototype.update = function(){
 
 	if (this.isVisible){
-		this.y = ((this.y < (640 - this.speedY)) ? (this.y + this.speedY) : (-100));
-		if ((- 100) == this.y){
+		this.y = ((this.y < (640*commonConfiguration.Yresolution - this.speedY)) ? (this.y + this.speedY) : (-100*commonConfiguration.Yresolution));
+		if ((- 100*commonConfiguration.Yresolution) == this.y){
 			this.isVisible = false;
 		}
 	}

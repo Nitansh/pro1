@@ -23,8 +23,8 @@ function Cracker(){
 		// this will time the auto launches of fireworks, one launch per 80 loop ticks
 		this.timerTotal = 60;
 		this.timerTick = 0;
-		this.cw  = 320;
-		this.ch   = 640;
+		this.cw  = 320*commonConfiguration.Xresolution;
+		this.ch   = 640* commonConfiguration.Yresolution;
 }
 
 Cracker.prototype.random = function( min, max ) {

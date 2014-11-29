@@ -4,10 +4,10 @@
 
 function Hero(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, isAnimated, speed){
 	this.base 	= Sprite;
-	this.base(positionX, 400, imageUrl, isVisible, frameCount, rowCount, isAnimated);
+	this.base(positionX, 400*commonConfiguration.Xresolution, imageUrl, isVisible, frameCount, rowCount, isAnimated);
 	this.animationId = 0;
-	this.speedX   = 19;
-	this.speedY   = 20; 
+	this.speedX   = 19*commonConfiguration.Xresolution;
+	this.speedY   = 20*commonConfiguration.Yresolution; 
 	this.isLeft   = false;
 	this.isRight  = true ;
 	this.inAir    = false;
@@ -123,8 +123,8 @@ Hero.prototype.Animation = function(Anim){
 Hero.prototype.leftToRightAnimation = function(){
 
 	// This.x + hero.width <= client.width - rampwidth 
-	if (this.x + this.Width <= (commonConfiguration.ClientWidth - commonConfiguration.rampWidth)){
-		if (this.x < commonConfiguration.ClientWidth / 2){
+	if (this.x + this.Width <= (commonConfiguration.ClientWidth - commonConfiguration.rampWidth)*commonConfiguration.Xresolution){
+		if (this.x < commonConfiguration.ClientWidth*commonConfiguration.Xresolution / 2){
 			this.Animation(2);
 		}else {
 			this.Animation(3);
@@ -134,12 +134,12 @@ Hero.prototype.leftToRightAnimation = function(){
 		this.x  = this.x +  this.speedX;
 	}
 
-	if (this.x + this.Width > (commonConfiguration.ClientWidth - commonConfiguration.rampWidth)){
+	if (this.x + this.Width > (commonConfiguration.ClientWidth - commonConfiguration.rampWidth)*commonConfiguration.Xresolution){
 		this.inAir   =  false;
 		this.isRight = true;
 		this.isLeft  = false;
 		this.Animation(0);
-		this.x = (commonConfiguration.ClientWidth - commonConfiguration.rampWidth - this.Width );
+		this.x = (commonConfiguration.ClientWidth - commonConfiguration.rampWidth - this.Width )*commonConfiguration.Xresolution;
 	}
 
 }
@@ -147,7 +147,7 @@ Hero.prototype.leftToRightAnimation = function(){
 Hero.prototype.rightToLeftAnimation = function(){
 
 	if (this.x  >= commonConfiguration.rampWidth){
-		if (this.x < commonConfiguration.ClientWidth / 2){
+		if (this.x < commonConfiguration.ClientWidth*commonConfiguration.Xresolution / 2){
 			this.Animation(2);
 		}else {
 			this.Animation(3);
@@ -155,17 +155,18 @@ Hero.prototype.rightToLeftAnimation = function(){
 		this.x  = this.x - this.speedX;
 	}
 
-	if (this.x  < commonConfiguration.rampWidth){
+	if (this.x  < commonConfiguration.rampWidth*commonConfiguration.Xresolution){
 		this.inAir  =  false;
 		this.isLeft =  true;
 		this.isRight=  false; 
 		this.Animation(1);
-		this.x  = commonConfiguration.rampWidth;
+		this.x  = commonConfiguration.rampWidth*commonConfiguration.Xresolution;
 	}
 
 }
 
 Hero.prototype.collisionLogic = function(){
+	try{
 	for (var spriteObject in spriteVariables){
 		if (spriteVariables[spriteObject].length){
 			for (var ctr_type = 0; ctr_type < spriteVariables[spriteObject].length; ctr_type++){	
@@ -192,21 +193,29 @@ Hero.prototype.collisionLogic = function(){
 				this.powerObject(spriteVariables[spriteObject]);
 			} 
 		}	
-	}	
+	}
+	}catch(err){
+		console.log("I got catch here");
+	}
 }
 
 
 Hero.prototype.updateObject = function(obj, visiblility){
+	try{
 	if (!visiblility){
 		this.updateCoinCount();
 	}else{
-		radio('TogglePauseButton').broadcast();
 		this.heroFalling = true;
 		radio('HeroDieing').broadcast();
+		radio('TogglePauseButton').broadcast();
+		
 	}
 	
 	obj.isVisible = false;
 	obj.y = commonConfiguration.YUpperLimit;
+	}
+	catch(err){
+	}
 }
 
 Hero.prototype.powerObject = function(power){
@@ -235,6 +244,8 @@ Hero.prototype.autoPilotToggle =  function(){
 
 Hero.prototype.heroTata = function(){
 
+	try{
+
 	if (spriteVariables.c1){
 		delete spriteVariables.c1;
 	}
@@ -257,12 +268,14 @@ Hero.prototype.heroTata = function(){
 	if (this.isRight){
 		this.Animation(4);
 	}
-
+	}catch(err){
+		console.log("error in heroo tat");
+	}
 }
 
 Hero.prototype.rocketEndAnimation = function(){
 	this.inAir = true;
-	if (this.x < commonConfiguration.ClientWidth/2){
+	if (this.x < commonConfiguration.ClientWidth*commonConfiguration.Xresolution/2){
 		this.isRight = true;
 		this.isLeft = false;	
 	}else{
@@ -273,7 +286,11 @@ Hero.prototype.rocketEndAnimation = function(){
 }
 
 Hero.prototype.updateCoinCount= function(){
+	try{
 	radio('UpdateCoinCount').broadcast();
+	}catch(err){
+		console.log("err in updateCoinCount");
+	}
 }
 
 
@@ -285,7 +302,7 @@ Hero.prototype.AI = function(obj){
 
 
 Hero.prototype.AdvanceCollision = function(obj){
-	if ((this.x + this.Width > obj.x + obj.Width/2) && ( this.x  < obj.x + obj.Width/2) && (this.y - 100 < obj.y + obj.Height)){
+	if ((this.x + this.Width > obj.x + obj.Width/2) && ( this.x  < obj.x + obj.Width/2) && (this.y - 100*commonConfiguration.Yresolution < obj.y + obj.Height)){
 		return true;
 	}else
 		return false;	 

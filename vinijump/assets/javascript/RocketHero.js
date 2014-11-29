@@ -12,7 +12,7 @@ RocketHero.prototype = Object.create(Sprite.prototype);
 RocketHero.prototype.update = function(){
 
 	if (this.isVisible){
-		if (this.x > 250 || this.x < 80 )
+		if (this.x > 250*commonConfiguration.Xresolution || this.x < 80*commonConfiguration.Xresolution )
 			this.speedToggle();
 		this.x += this.speedX;
 		spriteVariables.hero.x = this.x;
@@ -33,13 +33,13 @@ RocketHero.prototype.visiblityToggle = function(){
 							for (var ctr_no = 0; ctr_no < spriteVariables[spriteObject][ctr_type].length; ctr_no++){
 								//update function
 								if (spriteVariables[spriteObject][ctr_type][ctr_no].speedY)
-									spriteVariables[spriteObject][ctr_type][ctr_no].speedY = 50;
+									spriteVariables[spriteObject][ctr_type][ctr_no].speedY = 40;
 								
 							}
 						}
 			}else{
 						if (spriteVariables[spriteObject].speedY)
-							spriteVariables[spriteObject].speedY = 50;
+							spriteVariables[spriteObject].speedY = 40;
 			}
 	}
 	}

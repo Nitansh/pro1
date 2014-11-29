@@ -12,7 +12,7 @@ Rocket.prototype = Object.create(Sprite.prototype);
 Rocket.prototype.update = function(){
 
 	if (this.isVisible){
-		this.y = ((this.y < (commonConfiguration.ClientHeight - this.speedY)) ? (this.y + this.speedY) : (commonConfiguration.YUpperLimit));
+		this.y = ((this.y < (commonConfiguration.ClientHeight*commonConfiguration.Yresolution - this.speedY)) ? (this.y + this.speedY) : (commonConfiguration.YUpperLimit));
 		if ((commonConfiguration.YUpperLimit) == this.y){
 			this.isVisible = false;
 		}

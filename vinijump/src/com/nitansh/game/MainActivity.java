@@ -88,7 +88,7 @@ import android.widget.RelativeLayout;
         WebSettings webSettings = mainWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setDomStorageEnabled(true);
-        mainWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        //mainWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         mainWebView.setWebViewClient(new MyCustomWebViewClient());
         mainWebView.addJavascriptInterface(new AudioInterface(this), "AndAud");
         mainWebView.loadUrl("file:///android_asset/html/main.html");

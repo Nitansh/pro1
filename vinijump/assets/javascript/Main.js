@@ -21,6 +21,7 @@ window.onload = function(){
 	menuManager = new MenuManager(menuVariables);
 
 	// Pubsub subscription
+	try{
 	radio('MenuManagerStateUpdate').subscribe([menuManager.stateChanger, menuManager]);
 	radio('GameManagerStateUpdate').subscribe([gameManager.stateChanger, gameManager]);
 	radio('GameOn').subscribe([gameManager.initGameScene, gameManager]);
@@ -35,7 +36,10 @@ window.onload = function(){
 	radio('ApplyDormatClassToMeters').subscribe([spriteVariables.scoreBoard.applyDormatClass, spriteVariables.scoreBoard]);
 	radio('RemoveDormatClassFromMetere').subscribe([spriteVariables.scoreBoard.removeDormatClass, spriteVariables.scoreBoard]);
 	radio('AutoPilotOn').subscribe([spriteVariables.hero.autoPilotToggle, spriteVariables.hero]);
-	
+	}
+	catch(err){
+		console.log("error in Pubsub");
+	}
 	menuManager.showSplash();
 	menuManager.paint();
 	
@@ -57,6 +61,7 @@ function getHeroInput(event){
 
 function getInput(event){
 		
+		try{
 		var state = null;
 		if (0 == menuManager.state.localeCompare('play') || 0 == menuManager.state.localeCompare('resumed')){
 				spriteVariables.hero.onInput(event);			
@@ -72,10 +77,15 @@ function getInput(event){
 				if(menuVariables.main_menu.isVisible && menuVariables.main_menu.Clicked(event)){
 					state = 'menu';
 					// Make the Hero fall so we can reuse the previous code and logic
+					try{
 					radio('HeroDieing').broadcast();
+					
 					speedVariables.heroDied =  true;
 					AndAud.stopAudio();
 					radio('HeroDied').broadcast();
+					}catch(err){
+						console.log("error in hero dieing");
+					}
 				}
 				if(menuVariables.backButton.isVisible && menuVariables.backButton.Clicked(event)){
 					state = 'menu';
@@ -90,8 +100,12 @@ function getInput(event){
 				}
 		  		if(menuVariables.playButton.isVisible && menuVariables.playButton.Clicked(event)){			
 					state = 'play';
-					AndAud.playAudio();	
+					AndAud.playAudio();
+					try{	
 					radio('ToggleScoreBoardClass').broadcast();
+					}catch(err){
+						console.log("error in toggling class");
+					}
 				}
 				if(menuVariables.resumeButton.isVisible && menuVariables.resumeButton.Clicked(event)){
 					state = 'resumed';
@@ -108,11 +122,15 @@ function getInput(event){
 		}		
 		 
 		event.preventDefault();
+		}catch(err){
+		
+		}
 }
 
 // event for the meter scoreBoard
 
 rocketMeterUpdate = function(){
+	try{
 	if (parseInt(spriteVariables.scoreBoard.rocketMeterCoins.innerHTML) < parseInt(spriteVariables.scoreBoard.totalCoins.innerHTML)){
 		var value = parseInt(localStorage.RocketMeter);
 		value++;
@@ -122,9 +140,13 @@ rocketMeterUpdate = function(){
 	}else{
 		alert('You need ' + (parseInt(spriteVariables.scoreBoard.rocketMeterCoins.innerHTML) - parseInt(spriteVariables.scoreBoard.totalCoins.innerHTML)) +  ' coins to update');
 	}
+	}catch(err){
+		console.log("error in rocketMeter Update");
+	}
 }
 
 shieldMeterUpdate = function(){
+	try{
 	if (parseInt(spriteVariables.scoreBoard.shieldMeterCoins.innerHTML) < parseInt(spriteVariables.scoreBoard.totalCoins.innerHTML)){
 		var value = parseInt(localStorage.shieldMeter);
 		value++;
@@ -134,9 +156,13 @@ shieldMeterUpdate = function(){
 	}else{
 		alert('You need ' + (parseInt(spriteVariables.scoreBoard.shieldMeterCoins.innerHTML) - parseInt(spriteVariables.scoreBoard.totalCoins.innerHTML)) +  ' coins to update');
 	}
+	}catch(err){
+		console.log("Shield Meter update");
+	}
 }
 
 autoPlitotMeterUpadate = function(){
+	try{
 	if (parseInt(spriteVariables.scoreBoard.autoPlitotMeterCoins.innerHTML) < parseInt(spriteVariables.scoreBoard.totalCoins.innerHTML)){
 		var value = parseInt(localStorage.autoPlitotMeter);
 		value++;
@@ -145,5 +171,8 @@ autoPlitotMeterUpadate = function(){
 		spriteVariables.scoreBoard.updateMetreScoreBoard();
 	}else{
 		alert('You need ' + (parseInt(spriteVariables.scoreBoard.autoPlitotMeterCoins.innerHTML) - parseInt(spriteVariables.scoreBoard.totalCoins.innerHTML)) +  ' coins to update');
+	}
+	}catch(err){
+		console.log("error in auto pilot meter update");
 	}
 }
