@@ -91,6 +91,8 @@ import android.widget.RelativeLayout;
         //mainWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         mainWebView.setWebViewClient(new MyCustomWebViewClient());
         mainWebView.addJavascriptInterface(new AudioInterface(this), "AndAud");
+        mainWebView.addJavascriptInterface(new AudioInterface(this), "AndJump");
+        mainWebView.addJavascriptInterface(new AudioInterface(this), "AndCoin");
         mainWebView.loadUrl("file:///android_asset/html/main.html");
     }
     

@@ -45,9 +45,10 @@ window.onload = function(){
 	
 	window.addEventListener("touchstart", getHeroInput, false);
 	window.addEventListener("click", getInput, false);
-	AndAud.CreateAudio("sound/game.mp3", true, 50);
+	AndAud.CreateAudio("sound/game.mp3", true, 20);
+	AndJump.CreateAudio("sound/jump.wav",false, 90);
+	AndCoin.CreateAudio("sound/coin.wav",false, 90);
 	
-					
 	
 };
 
@@ -60,11 +61,10 @@ function getHeroInput(event){
 
 
 function getInput(event){
-		
 		try{
 		var state = null;
 		if (0 == menuManager.state.localeCompare('play') || 0 == menuManager.state.localeCompare('resumed')){
-				spriteVariables.hero.onInput(event);			
+				spriteVariables.hero.onInput(event);
 				
 				if(spriteVariables.backButton.isVisible && !spriteVariables.hero.heroFalling && spriteVariables.backButton.Clicked(event))
 				{	

@@ -70,6 +70,7 @@ Hero.prototype.onInput = function(evnt){
 
 
 	if (!this.inAir && !this.heroFalling && !this.rocketPower){		
+		AndJump.playAudio();
 		this.inAir = !this.inAir;
 	}
 }
@@ -203,6 +204,7 @@ Hero.prototype.collisionLogic = function(){
 Hero.prototype.updateObject = function(obj, visiblility){
 	try{
 	if (!visiblility){
+		AndCoin.playAudio();
 		this.updateCoinCount();
 	}else{
 		this.heroFalling = true;

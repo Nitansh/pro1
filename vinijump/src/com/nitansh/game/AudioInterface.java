@@ -15,12 +15,12 @@ public class AudioInterface {
 	}
 	@JavascriptInterface
 	public void stopAudio(){
-		mp.pause();
-		mp.seekTo(0);
+		mp.pause();	
 	}
 	
 	@JavascriptInterface
 	public void playAudio(){
+		mp.seekTo(0);
 		mp.start();
 	}
 	
