@@ -314,7 +314,7 @@ Hero.prototype.AdvanceCollision = function(obj){
 Hero.prototype.collidesWith = function(obj){
 	
 	if (this.shieldPower && obj.isObstacle){
-		if ( (this.x + this.Width > obj.x + obj.Width/2) && ( this.x  < obj.x + obj.Width/2) && (this.y < obj.y + obj.Height)) {
+		if ( (this.x + this.Width > obj.x + obj.Width/2) && ( this.x  < obj.x + obj.Width/2) && (this.y < obj.y + obj.Height) && (this.y + this.Height > obj.y ) ) {
 			obj.y = commonConfiguration.YUpperLimit;
 			obj.isVisible = false;
 			this.sheildPowerCtr = -2;
@@ -322,7 +322,7 @@ Hero.prototype.collidesWith = function(obj){
 		return false;
 	}
 
-	if ( (this.x + this.Width > obj.x + obj.Width/2) && ( this.x  < obj.x + obj.Width/2) && (this.y < obj.y + obj.Height)) {
+	if ( (this.x + this.Width > obj.x + obj.Width/2) && ( this.x  < obj.x + obj.Width/2) && (this.y < obj.y + obj.Height) && (this.y + this.Height > obj.y )) {
 		return true;
 	}
 	
