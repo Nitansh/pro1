@@ -48,6 +48,8 @@ window.onload = function(){
 	AndAud.CreateAudio("sound/game.mp3", true, 20);
 	AndJump.CreateAudio("sound/jump.wav",false, 90);
 	AndCoin.CreateAudio("sound/coin.wav",false, 90);
+	AndHero.CreateAudio("sound/hero_fall.mp3",false, 90);
+	AndCracker.CreateAudio("sound/cracker1.wav",false, 90);
 	
 	
 };

@@ -209,7 +209,7 @@ Particle.prototype.draw = function(ctx) {
 // create particle group/explosion
 Firework.prototype.createParticles= function( x, y ) {
 	// increase the particle count for a bigger explosion, beware of the canvas performance hit with the increased particles though
-	var particleCount = 40;
+	var particleCount = 15;
 	while( particleCount-- ) {
 		particles.push( new Particle( x, y ) );
 	}

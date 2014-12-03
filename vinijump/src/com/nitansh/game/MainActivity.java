@@ -93,6 +93,8 @@ import android.widget.RelativeLayout;
         mainWebView.addJavascriptInterface(new AudioInterface(this), "AndAud");
         mainWebView.addJavascriptInterface(new AudioInterface(this), "AndJump");
         mainWebView.addJavascriptInterface(new AudioInterface(this), "AndCoin");
+        mainWebView.addJavascriptInterface(new AudioInterface(this), "AndHero");
+        mainWebView.addJavascriptInterface(new AudioInterface(this), "AndCracker");
         mainWebView.loadUrl("file:///android_asset/html/main.html");
     }
     

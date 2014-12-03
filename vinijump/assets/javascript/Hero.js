@@ -7,7 +7,7 @@ function Hero(positionX, positionY, imageUrl, isVisible, frameCount, rowCount, i
 	this.base(positionX, 400*commonConfiguration.Xresolution, imageUrl, isVisible, frameCount, rowCount, isAnimated);
 	this.animationId = 0;
 	this.speedX   = 19*commonConfiguration.Xresolution;
-	this.speedY   = 20*commonConfiguration.Yresolution; 
+	this.speedY   = 5*commonConfiguration.Yresolution; 
 	this.isLeft   = false;
 	this.isRight  = true ;
 	this.inAir    = false;
@@ -207,6 +207,8 @@ Hero.prototype.updateObject = function(obj, visiblility){
 		AndCoin.playAudio();
 		this.updateCoinCount();
 	}else{
+		AndHero.playAudio();
+		AndAud.stopAudio();
 		this.heroFalling = true;
 		radio('HeroDieing').broadcast();
 		radio('TogglePauseButton').broadcast();
@@ -261,7 +263,6 @@ Hero.prototype.heroTata = function(){
 		this.y += this.speedY;
 	}else{
 		speedVariables.heroDied =  true;
-		AndAud.stopAudio();
 	}
 
 	if (this.isLeft){
